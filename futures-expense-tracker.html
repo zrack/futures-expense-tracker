@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futures Trading Expense Tracker</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Lucide icons as inline SVG components
+        const Plus = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+            </svg>
+        );
+
+        const Download = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+        );
+
+        const TrendingUp = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+        );
+
+        const DollarSign = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        );
+
+        function FuturesTradingExpenseTracker() {
+            const [expenses, setExpenses] = useState(() => {
+                const saved = localStorage.getItem('futuresExpenses');
+                return saved ? JSON.parse(saved) : [];
+            });
+            
+            const [formData, setFormData] = useState({
+                date: new Date().toISOString().split('T')[0],
+                category: 'Evaluation Fees',
+                amount: '',
+                description: ''
+            });
+
+            const categories = [
+                'Evaluation Fees',
+                'Account Fees',
+                'Data Subscriptions',
+                'News & Research Subscriptions',
+                'Educational Materials'
+            ];
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (formData.amount && formData.description) {
+                    const newExpenses = [...expenses, { ...formData, id: Date.now() }];
+                    setExpenses(newExpenses);
+                    localStorage.setItem('futuresExpenses', JSON.stringify(newExpenses));
+                    setFormData({
+                        date: new Date().toISOString().split('T')[0],
+                        category: 'Evaluation Fees',
+                        amount: '',
+                        description: ''
+                    });
+                }
+            };
+
+            const handleDelete = (id) => {
+                const newExpenses = expenses.filter(exp => exp.id !== id);
+                setExpenses(newExpenses);
+                localStorage.setItem('futuresExpenses', JSON.stringify(newExpenses));
+            };
+
+            const totalExpenses = expenses.reduce((sum, exp) => sum + parseFloat(exp.amount), 0);
+
+            const categoryTotals = categories.map(cat => ({
+                category: cat,
+                total: expenses
+                    .filter(exp => exp.category === cat)
+                    .reduce((sum, exp) => sum + parseFloat(exp.amount), 0)
+            }));
+
+            const exportToCSV = () => {
+                const headers = ['Date', 'Category', 'Amount', 'Description'];
+                const rows = expenses.map(exp => [
+                    exp.date,
+                    exp.category,
+                    exp.amount,
+                    exp.description
+                ]);
+                
+                const csvContent = [
+                    headers.join(','),
+                    ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+                ].join('\n');
+
+                const blob = new Blob([csvContent], { type: 'text/csv' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `futures-trading-expenses-${new Date().toISOString().split('T')[0]}.csv`;
+                a.click();
+            };
+
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6">
+                    <div className="max-w-6xl mx-auto">
+                        {/* Header */}
+                        <div className="mb-8 text-center">
+                            <div className="flex items-center justify-center gap-3 mb-2">
+                                <TrendingUp className="w-10 h-10 text-emerald-400" />
+                                <h1 className="text-4xl font-bold text-white">Futures Trading Expense Tracker</h1>
+                            </div>
+                            <p className="text-slate-400">Track your prop trading expenses for tax write-offs</p>
+                        </div>
+
+                        {/* Summary Cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-slate-400 text-sm mb-1">Total Expenses</p>
+                                        <p className="text-3xl font-bold text-white">${totalExpenses.toFixed(2)}</p>
+                                    </div>
+                                    <DollarSign className="w-12 h-12 text-emerald-400 opacity-50" />
+                                </div>
+                            </div>
+                            
+                            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-slate-400 text-sm mb-1">Total Entries</p>
+                                        <p className="text-3xl font-bold text-white">{expenses.length}</p>
+                                    </div>
+                                    <Plus className="w-12 h-12 text-blue-400 opacity-50" />
+                                </div>
+                            </div>
+
+                            <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <p className="text-slate-400 text-sm mb-1">Categories</p>
+                                        <p className="text-3xl font-bold text-white">{categories.length}</p>
+                                    </div>
+                                    <TrendingUp className="w-12 h-12 text-purple-400 opacity-50" />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Add Expense Form */}
+                        <div className="bg-slate-800 rounded-lg p-6 mb-8 border border-slate-700">
+                            <h2 className="text-xl font-semibold text-white mb-4">Add New Expense</h2>
+                            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-300 mb-2">Date</label>
+                                    <input
+                                        type="date"
+                                        value={formData.date}
+                                        onChange={(e) => setFormData({...formData, date: e.target.value})}
+                                        className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                                        required
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-300 mb-2">Category</label>
+                                    <select
+                                        value={formData.category}
+                                        onChange={(e) => setFormData({...formData, category: e.target.value})}
+                                        className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                                        required
+                                    >
+                                        {categories.map(cat => (
+                                            <option key={cat} value={cat}>{cat}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-300 mb-2">Amount ($)</label>
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        value={formData.amount}
+                                        onChange={(e) => setFormData({...formData, amount: e.target.value})}
+                                        placeholder="0.00"
+                                        className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                                        required
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-300 mb-2">Description</label>
+                                    <input
+                                        type="text"
+                                        value={formData.description}
+                                        onChange={(e) => setFormData({...formData, description: e.target.value})}
+                                        placeholder="e.g., TopStep Challenge Fee"
+                                        className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="flex items-end">
+                                    <button
+                                        type="submit"
+                                        className="w-full px-6 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+                                    >
+                                        <Plus className="w-5 h-5" />
+                                        Add Expense
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        {/* Category Breakdown */}
+                        {expenses.length > 0 && (
+                            <div className="bg-slate-800 rounded-lg p-6 mb-8 border border-slate-700">
+                                <h2 className="text-xl font-semibold text-white mb-4">Expenses by Category</h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                                    {categoryTotals.map(({ category, total }) => (
+                                        <div key={category} className="bg-slate-700 rounded-lg p-4">
+                                            <p className="text-slate-400 text-sm mb-1">{category}</p>
+                                            <p className="text-2xl font-bold text-white">${total.toFixed(2)}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Expense List */}
+                        <div className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                            <div className="flex justify-between items-center mb-4">
+                                <h2 className="text-xl font-semibold text-white">All Expenses</h2>
+                                {expenses.length > 0 && (
+                                    <button
+                                        onClick={exportToCSV}
+                                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2"
+                                    >
+                                        <Download className="w-5 h-5" />
+                                        Export CSV
+                                    </button>
+                                )}
+                            </div>
+
+                            {expenses.length === 0 ? (
+                                <div className="text-center py-12">
+                                    <TrendingUp className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+                                    <p className="text-slate-400">No expenses tracked yet. Add your first expense above!</p>
+                                </div>
+                            ) : (
+                                <div className="overflow-x-auto">
+                                    <table className="w-full">
+                                        <thead>
+                                            <tr className="border-b border-slate-700">
+                                                <th className="text-left py-3 px-4 text-slate-300 font-medium">Date</th>
+                                                <th className="text-left py-3 px-4 text-slate-300 font-medium">Category</th>
+                                                <th className="text-left py-3 px-4 text-slate-300 font-medium">Description</th>
+                                                <th className="text-right py-3 px-4 text-slate-300 font-medium">Amount</th>
+                                                <th className="text-right py-3 px-4 text-slate-300 font-medium">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {expenses.sort((a, b) => new Date(b.date) - new Date(a.date)).map(expense => (
+                                                <tr key={expense.id} className="border-b border-slate-700 hover:bg-slate-750">
+                                                    <td className="py-3 px-4 text-slate-300">{expense.date}</td>
+                                                    <td className="py-3 px-4">
+                                                        <span className="px-3 py-1 bg-slate-700 text-emerald-400 rounded-full text-sm">
+                                                            {expense.category}
+                                                        </span>
+                                                    </td>
+                                                    <td className="py-3 px-4 text-slate-300">{expense.description}</td>
+                                                    <td className="py-3 px-4 text-right text-white font-semibold">
+                                                        ${parseFloat(expense.amount).toFixed(2)}
+                                                    </td>
+                                                    <td className="py-3 px-4 text-right">
+                                                        <button
+                                                            onClick={() => handleDelete(expense.id)}
+                                                            className="text-red-400 hover:text-red-300 font-medium"
+                                                        >
+                                                            Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<FuturesTradingExpenseTracker />, document.getElementById('root'));
+    </script>
+</body>
+</html>
