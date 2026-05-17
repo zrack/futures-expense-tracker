@@ -40,6 +40,7 @@ You can also type a custom category.
 - **Legacy migration**: Older `futuresExpenses` records are migrated into the richer v2 schema.
 - **Ledger workflows**: Add, edit, copy, delete, and undo deleted entries.
 - **Filters**: Filter by tax year, category, deductibility status, or search text.
+- **Monthly closeout**: Review one month at a time with monthly totals, category totals, missing proof, review items, and one-click month CSV export.
 - **Tax review fields**: Mark entries as needs review, likely deductible, partial/allocation, not deductible, or reimbursed.
 - **Proof checklist**: Track whether a receipt is missing, stored, linked, on a statement, or not needed.
 - **Exports**: Export filtered CSV for tax review or bookkeeping, and JSON backup for full data recovery.
@@ -51,8 +52,21 @@ You can also type a custom category.
 2. Add an entry using the form.
 3. Keep receipts, statements, invoices, and payment confirmations in an organized folder.
 4. Use the receipt reference field to point to the matching proof.
-5. Export a JSON backup regularly.
-6. Export CSV when preparing records for a spreadsheet, accountant, or tax software.
+5. Use Monthly Closeout to clean up missing proof and review items before the month gets stale.
+6. Export a JSON backup regularly.
+7. Export CSV when preparing records for a spreadsheet, accountant, or tax software.
+
+## Monthly Closeout
+
+Use the Monthly Closeout panel as a simple habit loop:
+
+- Pick the month you want to review.
+- Check monthly net expenses, gross spend, refunds/reimbursements, and entry count.
+- Review category totals for quick reasonableness checks.
+- Clear the Missing Proof list by finding receipts, invoices, confirmations, or statements.
+- Clear the Needs Review list by deciding what should be marked likely deductible, partial/allocation, not deductible, or reimbursed.
+- Export the month CSV once the month is cleaned up.
+- Export a JSON backup after making changes.
 
 ## Data Storage
 
