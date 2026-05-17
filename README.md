@@ -40,9 +40,10 @@ You can also type a custom category.
 - **Legacy migration**: Older `futuresExpenses` records are migrated into the richer v2 schema.
 - **Ledger workflows**: Add, edit, copy, delete, and undo deleted entries.
 - **Filters**: Filter by tax year, category, deductibility status, or search text.
-- **Monthly closeout**: Review one month at a time with monthly totals, category totals, missing proof, review items, and one-click month CSV export.
+- **Top-bar CSV downloads**: Download all entries, a selected month, or a selected tax year.
+- **Receipt index**: Generate receipt filename/path suggestions, copy receipt filenames, and group receipt work by month and category.
 - **Tax review fields**: Mark entries as needs review, likely deductible, partial/allocation, not deductible, or reimbursed.
-- **Proof checklist**: Track whether a receipt is missing, stored, linked, on a statement, or not needed.
+- **Proof checklist**: Track whether a receipt is missing, named but not verified, stored, linked, on a statement, or not needed.
 - **Exports**: Export filtered CSV for tax review or bookkeeping, and JSON backup for full data recovery.
 - **Imports**: Import JSON backups and merge them with existing records.
 
@@ -51,22 +52,50 @@ You can also type a custom category.
 1. Open `futures-expense-tracker.html` in your browser.
 2. Add an entry using the form.
 3. Keep receipts, statements, invoices, and payment confirmations in an organized folder.
-4. Use the receipt reference field to point to the matching proof.
-5. Use Monthly Closeout to clean up missing proof and review items before the month gets stale.
-6. Export a JSON backup regularly.
-7. Export CSV when preparing records for a spreadsheet, accountant, or tax software.
+4. Use the suggested receipt path or copy the suggested filename when saving proof files.
+5. Use the receipt reference field to point to the matching proof.
+6. Use the top Download control to export all entries, one month, or one tax year.
+7. Export a JSON backup regularly.
+8. Export CSV when preparing records for a spreadsheet, accountant, or tax software.
 
-## Monthly Closeout
+## Receipt Indexing
 
-Use the Monthly Closeout panel as a simple habit loop:
+The app does not store PDFs, screenshots, or images in browser storage. Instead, it generates consistent filenames and paths so your receipts can live in a normal folder, cloud drive, or encrypted backup.
 
-- Pick the month you want to review.
-- Check monthly net expenses, gross spend, refunds/reimbursements, and entry count.
-- Review category totals for quick reasonableness checks.
-- Clear the Missing Proof list by finding receipts, invoices, confirmations, or statements.
-- Clear the Needs Review list by deciding what should be marked likely deductible, partial/allocation, not deductible, or reimbursed.
-- Export the month CSV once the month is cleaned up.
-- Export a JSON backup after making changes.
+Suggested filename format:
+
+```text
+YYYY-MM-DD_vendor_category_amount.pdf
+```
+
+Example:
+
+```text
+2026-05-16_topstep_prop-firm-evaluation-fees_199.00.pdf
+```
+
+Suggested folder convention:
+
+```text
+Trading Expenses/
+  2026/
+    05/
+      receipts/
+      statements/
+      exports/
+```
+
+The receipt index groups proof work by month and category. Use `Named but not verified` when you have assigned a filename/path but still need to confirm the file exists in your receipt folder.
+
+## CSV Downloads
+
+Use the top Download controls to export:
+
+- All entries
+- One selected month
+- One selected tax year
+
+CSV exports include receipt filename/path suggestions so bookkeeping and receipt cleanup can happen from the same spreadsheet.
 
 ## Data Storage
 
@@ -76,7 +105,7 @@ Recommended habit:
 
 - Export a JSON backup after each recordkeeping session.
 - Store backups somewhere durable, such as an encrypted cloud drive or external backup.
-- Keep receipts and statements outside the browser, organized by tax year and expense type.
+- Keep receipts and statements outside the browser, organized by tax year, month, and proof type.
 
 ## Tax Note
 

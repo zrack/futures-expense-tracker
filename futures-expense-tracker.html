@@ -215,120 +215,131 @@
             font-size: 0.82rem;
         }
 
-        .closeout-panel {
-            margin-bottom: 18px;
-        }
-
-        .closeout-header-actions {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-end;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
         .compact-field {
             min-width: 170px;
         }
 
-        .closeout-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 12px;
-            margin-bottom: 14px;
+        .download-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: flex-end;
+            gap: 8px;
         }
 
-        .closeout-metric {
-            min-width: 0;
-            padding: 14px;
+        .download-field {
+            min-width: 126px;
+        }
+
+        .download-field label {
+            margin-bottom: 4px;
+            font-size: 0.76rem;
+        }
+
+        .download-field select,
+        .download-field input {
+            min-height: 40px;
+            padding: 8px 10px;
+            background: var(--surface);
+        }
+
+        .receipt-panel {
+            margin-bottom: 18px;
+        }
+
+        .receipt-suggestion {
+            padding: 12px;
             border: 1px solid var(--line);
             border-radius: var(--radius);
             background: #f8fafc;
         }
 
-        .closeout-metric p {
+        .receipt-suggestion p {
             margin-bottom: 0;
         }
 
-        .closeout-value {
-            color: var(--ink);
-            font-size: 1.35rem;
-            font-weight: 850;
-            line-height: 1.15;
+        .suggestion-text {
+            margin: 4px 0 0;
             overflow-wrap: anywhere;
+            color: var(--ink);
+            font-size: 0.9rem;
+            font-weight: 800;
         }
 
-        .closeout-columns {
+        .suggestion-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .receipt-controls {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .receipt-index-list {
             display: grid;
-            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-            gap: 14px;
-            align-items: start;
+            gap: 12px;
         }
 
-        .closeout-section {
-            min-width: 0;
-            padding: 14px;
+        .receipt-group {
             border: 1px solid var(--line);
             border-radius: var(--radius);
+            overflow: hidden;
             background: #ffffff;
         }
 
-        .closeout-section h3,
-        .checklist-block h3 {
-            margin-bottom: 10px;
+        .receipt-group-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 11px 12px;
+            border-bottom: 1px solid var(--line);
+            background: #f8fafc;
+        }
+
+        .receipt-group-header h3 {
+            margin-bottom: 0;
             color: #344054;
             font-size: 0.9rem;
             font-weight: 850;
-            text-transform: uppercase;
         }
 
-        .category-list,
-        .checklist-list {
+        .receipt-item {
             display: grid;
-            gap: 8px;
-        }
-
-        .category-row,
-        .checklist-item {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
+            grid-template-columns: minmax(0, 1fr) auto;
             gap: 12px;
-            padding: 10px;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: #fbfcfe;
+            padding: 12px;
+            border-bottom: 1px solid var(--line);
         }
 
-        .category-row strong,
-        .checklist-item strong {
+        .receipt-item:last-child {
+            border-bottom: 0;
+        }
+
+        .receipt-item strong {
             display: block;
             line-height: 1.25;
         }
 
-        .checklist-block + .checklist-block {
-            margin-top: 14px;
+        .receipt-path {
+            display: block;
+            margin-top: 5px;
+            overflow-wrap: anywhere;
+            color: #344054;
+            font-size: 0.82rem;
         }
 
-        .closeout-backup {
-            margin: 0 0 14px;
-            padding: 10px 12px;
-            border: 1px solid #b8d6d2;
-            border-radius: var(--radius);
-            background: #edf8f6;
-            color: #164e48;
-        }
-
-        .closeout-backup.warning {
-            border-color: #f3d49b;
-            background: #fff8eb;
-            color: #7c4a03;
-        }
-
-        .closeout-backup.danger {
-            border-color: #f0c7c7;
-            background: #fff7f7;
-            color: #8a1515;
+        .receipt-item-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+            white-space: nowrap;
         }
 
         .workspace {
@@ -536,6 +547,11 @@
             color: #8a4b05;
         }
 
+        .tag.named {
+            background: #fff8eb;
+            color: #92400e;
+        }
+
         .tag.likely-deductible,
         .tag.stored,
         .tag.linked {
@@ -580,8 +596,7 @@
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
-            .closeout-grid,
-            .closeout-columns {
+            .receipt-item {
                 grid-template-columns: 1fr;
             }
         }
@@ -601,9 +616,14 @@
                 margin-top: 14px;
             }
 
-            .closeout-header-actions {
+            .receipt-controls {
+                align-items: stretch;
                 justify-content: flex-start;
                 margin-top: 14px;
+            }
+
+            .download-controls {
+                justify-content: flex-start;
             }
 
             .summary-grid,
@@ -614,6 +634,10 @@
 
             .metric {
                 padding: 14px;
+            }
+
+            .receipt-item-actions {
+                align-items: flex-start;
             }
         }
     </style>
@@ -628,7 +652,25 @@
             </div>
             <div class="actions" aria-label="Data export and import actions">
                 <button class="button secondary" id="exportJsonBtn" type="button">Backup JSON</button>
-                <button class="button primary" id="exportCsvBtn" type="button">Export CSV</button>
+                <div class="download-controls" aria-label="CSV download controls">
+                    <div class="download-field">
+                        <label for="downloadScope">Download</label>
+                        <select id="downloadScope">
+                            <option value="all">All entries</option>
+                            <option value="month">Month</option>
+                            <option value="year">Year</option>
+                        </select>
+                    </div>
+                    <div class="download-field" id="downloadMonthField">
+                        <label for="downloadMonth">Month</label>
+                        <input id="downloadMonth" type="month">
+                    </div>
+                    <div class="download-field" id="downloadYearField" hidden>
+                        <label for="downloadYear">Year</label>
+                        <input id="downloadYear" type="number" min="2000" max="2100" step="1">
+                    </div>
+                    <button class="button primary" id="downloadCsvBtn" type="button">Download CSV</button>
+                </div>
                 <label class="file-button" for="importJsonInput">Import JSON
                     <input id="importJsonInput" type="file" accept="application/json,.json">
                 </label>
@@ -649,7 +691,7 @@
             <article class="metric">
                 <p class="metric-label">Missing proof</p>
                 <p class="metric-value" id="missingProof">0</p>
-                <p class="metric-note">Entries to chase down</p>
+                <p class="metric-note">Missing or unverified</p>
             </article>
             <article class="metric">
                 <p class="metric-label">Needs review</p>
@@ -667,58 +709,25 @@
             <button class="button secondary" id="undoDeleteBtn" type="button">Undo</button>
         </div>
 
-        <section class="panel closeout-panel" aria-labelledby="closeoutTitle">
+        <div class="notice" id="copyNotice" role="status">
+            <p id="copyNoticeText"></p>
+        </div>
+
+        <section class="panel receipt-panel" aria-labelledby="receiptIndexTitle">
             <div class="panel-header">
                 <div>
-                    <h2 id="closeoutTitle">Monthly Closeout</h2>
-                    <p class="status-line" id="closeoutStatus">Review one month before exporting or filing records away.</p>
+                    <h2 id="receiptIndexTitle">Receipt Index</h2>
+                    <p class="status-line" id="receiptIndexStatus">Group receipt work by month and category.</p>
                 </div>
-                <div class="closeout-header-actions">
+                <div class="receipt-controls">
                     <div class="compact-field">
-                        <label for="closeoutMonth">Month</label>
-                        <input id="closeoutMonth" type="month">
+                        <label for="receiptIndexFilter">View</label>
+                        <select id="receiptIndexFilter"></select>
                     </div>
-                    <button class="button secondary" id="showMonthInLedgerBtn" type="button">Show in ledger</button>
-                    <button class="button primary" id="exportMonthCsvBtn" type="button">Export month CSV</button>
                 </div>
             </div>
             <div class="panel-body">
-                <div class="closeout-grid" aria-label="Monthly closeout summary">
-                    <article class="closeout-metric">
-                        <p class="metric-label">Monthly net</p>
-                        <p class="closeout-value" id="closeoutNet">$0.00</p>
-                    </article>
-                    <article class="closeout-metric">
-                        <p class="metric-label">Gross spend</p>
-                        <p class="closeout-value" id="closeoutGross">$0.00</p>
-                    </article>
-                    <article class="closeout-metric">
-                        <p class="metric-label">Refunds / reimbursements</p>
-                        <p class="closeout-value" id="closeoutOffsets">$0.00</p>
-                    </article>
-                    <article class="closeout-metric">
-                        <p class="metric-label">Entries</p>
-                        <p class="closeout-value" id="closeoutEntries">0</p>
-                    </article>
-                </div>
-                <p class="closeout-backup" id="closeoutBackupReminder">Backup status will appear after the ledger loads.</p>
-                <div class="closeout-columns">
-                    <section class="closeout-section" aria-labelledby="closeoutCategoriesTitle">
-                        <h3 id="closeoutCategoriesTitle">Category Totals</h3>
-                        <div class="category-list" id="closeoutCategoryList"></div>
-                    </section>
-                    <section class="closeout-section" aria-labelledby="closeoutChecklistTitle">
-                        <h3 id="closeoutChecklistTitle">Action Checklist</h3>
-                        <div class="checklist-block">
-                            <h3>Missing Proof</h3>
-                            <div class="checklist-list" id="closeoutMissingList"></div>
-                        </div>
-                        <div class="checklist-block">
-                            <h3>Needs Review</h3>
-                            <div class="checklist-list" id="closeoutReviewList"></div>
-                        </div>
-                    </section>
-                </div>
+                <div class="receipt-index-list" id="receiptIndexList"></div>
             </div>
         </section>
 
@@ -785,6 +794,15 @@
                             <div>
                                 <label for="receiptRef">Receipt / proof reference</label>
                                 <input id="receiptRef" name="receiptRef" maxlength="180" placeholder="Filename, folder, statement, or URL">
+                            </div>
+                            <div class="wide receipt-suggestion">
+                                <p class="metric-label">Suggested receipt filename</p>
+                                <p class="suggestion-text" id="receiptSuggestionName">Add amount and vendor to generate a filename.</p>
+                                <p class="hint" id="receiptSuggestionPath"></p>
+                                <div class="suggestion-actions">
+                                    <button class="button secondary" id="copySuggestedReceiptBtn" type="button">Copy filename</button>
+                                    <button class="button secondary" id="useSuggestedReceiptBtn" type="button">Use suggested path</button>
+                                </div>
                             </div>
                             <div class="wide">
                                 <label for="notes">Notes</label>
@@ -900,10 +918,20 @@
 
             const receiptOptions = [
                 { value: "missing", label: "Missing" },
+                { value: "named", label: "Named but not verified" },
                 { value: "stored", label: "Stored locally" },
                 { value: "linked", label: "Linked / referenced" },
                 { value: "statement", label: "On account statement" },
                 { value: "not-needed", label: "Not needed" }
+            ];
+
+            const receiptIndexFilters = [
+                { value: "needs-action", label: "Needs receipt work" },
+                { value: "missing", label: "Missing" },
+                { value: "named", label: "Named but not verified" },
+                { value: "stored", label: "Stored or linked" },
+                { value: "statement", label: "On statement" },
+                { value: "all", label: "All entries" }
             ];
 
             const state = {
@@ -912,7 +940,10 @@
                 editingId: null,
                 lastDeleted: null,
                 loadWarning: "",
-                closeoutMonth: "",
+                receiptIndexFilter: "needs-action",
+                downloadScope: "all",
+                downloadMonth: "",
+                downloadYear: "",
                 filters: {
                     year: "all",
                     category: "all",
@@ -927,6 +958,7 @@
             });
 
             const els = {};
+            let copyNoticeTimer = null;
 
             document.addEventListener("DOMContentLoaded", init);
 
@@ -935,7 +967,10 @@
                 populateStaticControls();
                 state.expenses = loadExpenses();
                 state.settings = loadSettings();
-                state.closeoutMonth = state.settings.closeoutMonth || latestExpenseMonth() || currentMonth();
+                state.receiptIndexFilter = state.settings.receiptIndexFilter || "needs-action";
+                state.downloadScope = state.settings.downloadScope || "all";
+                state.downloadMonth = state.settings.downloadMonth || latestExpenseMonth() || currentMonth();
+                state.downloadYear = state.settings.downloadYear || taxYearFromDate(todayISO());
                 setDefaultFormValues();
                 bindEvents();
                 render();
@@ -948,18 +983,17 @@
                     "grossSpend",
                     "missingProof",
                     "needsReview",
-                    "closeoutMonth",
-                    "showMonthInLedgerBtn",
-                    "exportMonthCsvBtn",
-                    "closeoutStatus",
-                    "closeoutNet",
-                    "closeoutGross",
-                    "closeoutOffsets",
-                    "closeoutEntries",
-                    "closeoutBackupReminder",
-                    "closeoutCategoryList",
-                    "closeoutMissingList",
-                    "closeoutReviewList",
+                    "downloadScope",
+                    "downloadMonthField",
+                    "downloadYearField",
+                    "downloadMonth",
+                    "downloadYear",
+                    "downloadCsvBtn",
+                    "receiptIndexFilter",
+                    "receiptIndexStatus",
+                    "receiptIndexList",
+                    "copyNotice",
+                    "copyNoticeText",
                     "loadWarning",
                     "loadWarningText",
                     "undoNotice",
@@ -980,6 +1014,10 @@
                     "deductibility",
                     "receiptStatus",
                     "receiptRef",
+                    "receiptSuggestionName",
+                    "receiptSuggestionPath",
+                    "copySuggestedReceiptBtn",
+                    "useSuggestedReceiptBtn",
                     "notes",
                     "saveExpenseBtn",
                     "cancelEditBtn",
@@ -994,7 +1032,6 @@
                     "expensesTableBody",
                     "emptyState",
                     "exportJsonBtn",
-                    "exportCsvBtn",
                     "importJsonInput"
                 ].forEach((id) => {
                     els[id] = document.getElementById(id);
@@ -1024,6 +1061,10 @@
                     els.receiptStatus.appendChild(makeOption(item.value, item.label));
                 });
 
+                receiptIndexFilters.forEach((item) => {
+                    els.receiptIndexFilter.appendChild(makeOption(item.value, item.label));
+                });
+
                 els.filterDeductibility.insertBefore(makeOption("all", "All statuses"), els.filterDeductibility.firstChild);
             }
 
@@ -1034,7 +1075,21 @@
                     if (els.entryDate.value) {
                         els.taxYear.value = taxYearFromDate(els.entryDate.value);
                     }
+                    renderFormReceiptSuggestion();
                 });
+                [
+                    "entryType",
+                    "amount",
+                    "category",
+                    "vendor",
+                    "description",
+                    "receiptRef"
+                ].forEach((id) => {
+                    els[id].addEventListener("input", renderFormReceiptSuggestion);
+                    els[id].addEventListener("change", renderFormReceiptSuggestion);
+                });
+                els.copySuggestedReceiptBtn.addEventListener("click", copySuggestedReceiptName);
+                els.useSuggestedReceiptBtn.addEventListener("click", useSuggestedReceiptPathInForm);
 
                 els.filterYear.addEventListener("change", () => {
                     state.filters.year = els.filterYear.value;
@@ -1053,21 +1108,36 @@
                     render();
                 });
                 els.clearFiltersBtn.addEventListener("click", clearFilters);
-                els.closeoutMonth.addEventListener("change", () => {
-                    state.closeoutMonth = els.closeoutMonth.value || currentMonth();
-                    state.settings.closeoutMonth = state.closeoutMonth;
+                els.downloadScope.addEventListener("change", () => {
+                    state.downloadScope = els.downloadScope.value;
+                    state.settings.downloadScope = state.downloadScope;
                     saveSettings();
-                    render();
+                    renderDownloadControls();
                 });
-                els.showMonthInLedgerBtn.addEventListener("click", showCloseoutMonthInLedger);
-                els.exportMonthCsvBtn.addEventListener("click", exportCloseoutCsv);
+                els.downloadMonth.addEventListener("change", () => {
+                    state.downloadMonth = els.downloadMonth.value || currentMonth();
+                    state.settings.downloadMonth = state.downloadMonth;
+                    saveSettings();
+                    renderDownloadControls();
+                });
+                els.downloadYear.addEventListener("change", () => {
+                    state.downloadYear = cleanText(els.downloadYear.value) || taxYearFromDate(todayISO());
+                    state.settings.downloadYear = state.downloadYear;
+                    saveSettings();
+                    renderDownloadControls();
+                });
+                els.downloadCsvBtn.addEventListener("click", exportSelectedCsv);
+                els.receiptIndexFilter.addEventListener("change", () => {
+                    state.receiptIndexFilter = els.receiptIndexFilter.value;
+                    state.settings.receiptIndexFilter = state.receiptIndexFilter;
+                    saveSettings();
+                    renderReceiptIndex();
+                });
 
                 els.expensesTableBody.addEventListener("click", handleTableAction);
-                els.closeoutMissingList.addEventListener("click", handleTableAction);
-                els.closeoutReviewList.addEventListener("click", handleTableAction);
+                els.receiptIndexList.addEventListener("click", handleTableAction);
                 els.undoDeleteBtn.addEventListener("click", undoDelete);
                 els.exportJsonBtn.addEventListener("click", exportJsonBackup);
-                els.exportCsvBtn.addEventListener("click", exportCurrentCsv);
                 els.importJsonInput.addEventListener("change", handleJsonImport);
             }
 
@@ -1244,7 +1314,7 @@
                 };
             }
 
-            function handleTableAction(event) {
+            async function handleTableAction(event) {
                 const button = event.target.closest("button[data-action]");
                 if (!button) {
                     return;
@@ -1259,6 +1329,10 @@
                     editExpense(expense);
                 } else if (button.dataset.action === "copy") {
                     copyExpenseToForm(expense);
+                } else if (button.dataset.action === "copy-receipt-name") {
+                    await copyReceiptName(expense);
+                } else if (button.dataset.action === "use-receipt-path") {
+                    useReceiptPath(expense);
                 } else if (button.dataset.action === "delete") {
                     deleteExpense(expense);
                 }
@@ -1271,6 +1345,7 @@
                 els.formModeText.textContent = "Updating an existing ledger entry.";
                 els.saveExpenseBtn.textContent = "Update entry";
                 els.cancelEditBtn.hidden = false;
+                renderFormReceiptSuggestion();
                 document.getElementById("entryPanel").scrollIntoView({ behavior: "smooth", block: "start" });
             }
 
@@ -1286,6 +1361,7 @@
                 els.formModeText.textContent = "Review the copied entry, then save it as a new record.";
                 els.saveExpenseBtn.textContent = "Save copy";
                 els.cancelEditBtn.hidden = false;
+                renderFormReceiptSuggestion();
                 document.getElementById("entryPanel").scrollIntoView({ behavior: "smooth", block: "start" });
             }
 
@@ -1333,6 +1409,7 @@
                 els.formModeText.textContent = "Record the facts while they are fresh.";
                 els.saveExpenseBtn.textContent = "Save entry";
                 els.cancelEditBtn.hidden = true;
+                renderFormReceiptSuggestion();
             }
 
             function persistAndRender() {
@@ -1350,7 +1427,9 @@
                 syncFilterControls();
                 renderSummary();
                 renderBackupStatus();
-                renderCloseout();
+                renderDownloadControls();
+                renderReceiptIndex();
+                renderFormReceiptSuggestion();
                 renderTable();
                 renderUndoNotice();
             }
@@ -1393,7 +1472,7 @@
                 const gross = expenses
                     .filter((expense) => expense.type === "expense")
                     .reduce((sum, expense) => sum + Number(expense.amount), 0);
-                const missing = expenses.filter((expense) => expense.receiptStatus === "missing").length;
+                const missing = expenses.filter(needsReceiptWork).length;
                 const review = expenses.filter((expense) => ["needs-review", "partial"].includes(expense.deductibility)).length;
 
                 els.netExpenses.textContent = formatMoney(net);
@@ -1403,125 +1482,163 @@
                 els.netExpensesNote.textContent = state.filters.year === "all" ? "All visible years" : `Tax year ${state.filters.year}`;
             }
 
-            function renderCloseout() {
-                ensureCloseoutMonth();
-                const expenses = getCloseoutExpenses();
-                const gross = expenses
-                    .filter((expense) => expense.type === "expense")
-                    .reduce((sum, expense) => sum + Number(expense.amount), 0);
-                const offsets = expenses
-                    .filter((expense) => expense.type !== "expense")
-                    .reduce((sum, expense) => sum + Number(expense.amount), 0);
-                const net = expenses.reduce((sum, expense) => sum + signedAmount(expense), 0);
-                const missing = expenses.filter((expense) => expense.receiptStatus === "missing");
-                const review = expenses.filter((expense) => ["needs-review", "partial"].includes(expense.deductibility));
-
-                els.closeoutMonth.value = state.closeoutMonth;
-                els.closeoutStatus.textContent = `${formatMonth(state.closeoutMonth)} closeout: ${expenses.length} ${expenses.length === 1 ? "entry" : "entries"}, ${missing.length} missing proof, ${review.length} needing review.`;
-                els.closeoutNet.textContent = formatMoney(net);
-                els.closeoutGross.textContent = formatMoney(gross);
-                els.closeoutOffsets.textContent = formatMoney(offsets);
-                els.closeoutEntries.textContent = String(expenses.length);
-
-                renderCloseoutBackupReminder();
-                renderCloseoutCategories(expenses);
-                renderChecklist(els.closeoutMissingList, missing, "No missing proof for this month.");
-                renderChecklist(els.closeoutReviewList, review, "No review items for this month.");
-            }
-
-            function renderCloseoutBackupReminder() {
-                const latestChange = latestUpdatedAt();
-                const lastExport = state.settings.lastExportAt ? new Date(state.settings.lastExportAt) : null;
-                let message = "Backup current. Export a JSON backup again after you change records.";
-                let tone = "";
-
-                if (!state.expenses.length) {
-                    message = "No records yet. Export a JSON backup after your first recordkeeping session.";
-                    tone = "warning";
-                } else if (!lastExport || Number.isNaN(lastExport.getTime())) {
-                    message = "Backup recommended: no JSON backup has been exported from this browser.";
-                    tone = "danger";
-                } else if (latestChange && lastExport < latestChange) {
-                    message = "Backup recommended: entries changed after the last JSON backup.";
-                    tone = "warning";
-                } else {
-                    const daysOld = Math.floor((Date.now() - lastExport.getTime()) / 86400000);
-                    if (daysOld > 14) {
-                        message = `Backup reminder: last JSON backup was ${daysOld} days ago.`;
-                        tone = "warning";
-                    } else {
-                        message = `Backup current: last JSON backup was ${lastExport.toLocaleString()}.`;
-                    }
+            function renderDownloadControls() {
+                if (!["all", "month", "year"].includes(state.downloadScope)) {
+                    state.downloadScope = "all";
+                }
+                if (!/^\d{4}-\d{2}$/.test(String(state.downloadMonth))) {
+                    state.downloadMonth = latestExpenseMonth() || currentMonth();
+                }
+                if (!/^\d{4}$/.test(String(state.downloadYear))) {
+                    state.downloadYear = taxYearFromDate(todayISO());
                 }
 
-                els.closeoutBackupReminder.className = `closeout-backup${tone ? ` ${tone}` : ""}`;
-                els.closeoutBackupReminder.textContent = message;
+                els.downloadScope.value = state.downloadScope;
+                els.downloadMonth.value = state.downloadMonth;
+                els.downloadYear.value = state.downloadYear;
+                els.downloadMonthField.hidden = state.downloadScope !== "month";
+                els.downloadYearField.hidden = state.downloadScope !== "year";
             }
 
-            function renderCloseoutCategories(expenses) {
-                const totals = new Map();
-                expenses.forEach((expense) => {
-                    const current = totals.get(expense.category) || { category: expense.category, total: 0, count: 0 };
-                    current.total += signedAmount(expense);
-                    current.count += 1;
-                    totals.set(expense.category, current);
-                });
+            function renderReceiptIndex() {
+                ensureSelectValue(els.receiptIndexFilter, state.receiptIndexFilter, "needs-action");
+                state.receiptIndexFilter = els.receiptIndexFilter.value || "needs-action";
+                const expenses = getReceiptIndexExpenses();
+                const label = labelForReceiptIndexFilter(state.receiptIndexFilter);
+                els.receiptIndexStatus.textContent = `${label}: ${expenses.length} ${expenses.length === 1 ? "entry" : "entries"}.`;
+                els.receiptIndexList.innerHTML = "";
 
-                const rows = Array.from(totals.values()).sort((a, b) => {
-                    const amountSort = Math.abs(b.total) - Math.abs(a.total);
-                    if (amountSort !== 0) {
-                        return amountSort;
-                    }
-                    return a.category.localeCompare(b.category);
-                });
-
-                els.closeoutCategoryList.innerHTML = "";
-                if (!rows.length) {
-                    els.closeoutCategoryList.innerHTML = `<p class="status-line">No category totals for this month.</p>`;
-                    return;
-                }
-
-                const fragment = document.createDocumentFragment();
-                rows.forEach((row) => {
-                    const item = document.createElement("div");
-                    item.className = "category-row";
-                    item.innerHTML = `
-                        <div>
-                            <strong>${escapeHtml(row.category)}</strong>
-                            <span class="hint">${row.count} ${row.count === 1 ? "entry" : "entries"}</span>
-                        </div>
-                        <strong>${formatMoney(row.total)}</strong>
-                    `;
-                    fragment.appendChild(item);
-                });
-                els.closeoutCategoryList.appendChild(fragment);
-            }
-
-            function renderChecklist(container, expenses, emptyText) {
-                container.innerHTML = "";
                 if (!expenses.length) {
-                    container.innerHTML = `<p class="status-line">${escapeHtml(emptyText)}</p>`;
+                    els.receiptIndexList.innerHTML = `<p class="status-line">No receipt items in this view.</p>`;
                     return;
                 }
 
+                const groups = groupReceiptItems(expenses);
                 const fragment = document.createDocumentFragment();
-                expenses
-                    .slice()
-                    .sort((a, b) => a.date.localeCompare(b.date))
-                    .forEach((expense) => {
-                        const item = document.createElement("div");
-                        item.className = "checklist-item";
-                        item.innerHTML = `
-                            <div>
-                                <strong>${escapeHtml(expense.vendor)}</strong>
-                                <span class="hint">${escapeHtml(expense.date)} - ${escapeHtml(expense.description)}</span>
-                                <span class="hint">${escapeHtml(expense.category)} - ${formatMoney(signedAmount(expense))}</span>
-                            </div>
-                            <button class="button text" type="button" data-action="edit" data-id="${escapeHtml(expense.id)}">Edit</button>
-                        `;
-                        fragment.appendChild(item);
+                groups.forEach((group) => {
+                    const groupEl = document.createElement("section");
+                    groupEl.className = "receipt-group";
+                    groupEl.innerHTML = `
+                        <div class="receipt-group-header">
+                            <h3>${escapeHtml(group.label)}</h3>
+                            <span class="hint">${group.items.length} ${group.items.length === 1 ? "entry" : "entries"}</span>
+                        </div>
+                    `;
+
+                    group.items.forEach((expense) => {
+                        groupEl.appendChild(renderReceiptIndexItem(expense));
                     });
-                container.appendChild(fragment);
+                    fragment.appendChild(groupEl);
+                });
+                els.receiptIndexList.appendChild(fragment);
+            }
+
+            function renderReceiptIndexItem(expense) {
+                const item = document.createElement("article");
+                item.className = "receipt-item";
+                const suggestedName = suggestedReceiptFilename(expense);
+                const suggestedPath = suggestedReceiptPath(expense);
+                const reference = expense.receiptRef || "No receipt reference saved yet.";
+                item.innerHTML = `
+                    <div>
+                        <strong>${escapeHtml(expense.vendor)} - ${escapeHtml(expense.description)}</strong>
+                        <span class="hint">${escapeHtml(expense.date)} - ${escapeHtml(expense.category)} - ${formatMoney(signedAmount(expense))}</span>
+                        <span class="receipt-path">Suggested: ${escapeHtml(suggestedName)}</span>
+                        <span class="receipt-path">Folder path: ${escapeHtml(suggestedPath)}</span>
+                        <span class="hint">Current reference: ${escapeHtml(reference)}</span>
+                    </div>
+                    <div class="receipt-item-actions">
+                        <span class="tag ${escapeHtml(expense.receiptStatus)}">${escapeHtml(labelForReceipt(expense.receiptStatus))}</span>
+                        <button class="button text" type="button" data-action="copy-receipt-name" data-id="${escapeHtml(expense.id)}">Copy name</button>
+                        <button class="button text" type="button" data-action="use-receipt-path" data-id="${escapeHtml(expense.id)}">Use path</button>
+                        <button class="button text" type="button" data-action="edit" data-id="${escapeHtml(expense.id)}">Edit</button>
+                    </div>
+                `;
+                return item;
+            }
+
+            function renderFormReceiptSuggestion() {
+                const draft = readReceiptDraftFromForm();
+                const canSuggest = canSuggestReceiptName(draft);
+                els.copySuggestedReceiptBtn.disabled = !canSuggest;
+                els.useSuggestedReceiptBtn.disabled = !canSuggest;
+
+                if (!canSuggest) {
+                    els.receiptSuggestionName.textContent = "Add date, vendor, category, and amount to generate a filename.";
+                    els.receiptSuggestionPath.textContent = "";
+                    return;
+                }
+
+                els.receiptSuggestionName.textContent = suggestedReceiptFilename(draft);
+                els.receiptSuggestionPath.textContent = `Suggested path: ${suggestedReceiptPath(draft)}`;
+            }
+
+            function getReceiptIndexExpenses() {
+                return state.expenses
+                    .filter((expense) => {
+                        if (state.receiptIndexFilter === "needs-action") {
+                            return needsReceiptWork(expense);
+                        }
+                        if (state.receiptIndexFilter === "stored") {
+                            return ["stored", "linked"].includes(expense.receiptStatus);
+                        }
+                        if (state.receiptIndexFilter === "all") {
+                            return true;
+                        }
+                        return expense.receiptStatus === state.receiptIndexFilter;
+                    })
+                    .sort((a, b) => {
+                        const monthSort = monthFromDate(b.date).localeCompare(monthFromDate(a.date));
+                        if (monthSort !== 0) {
+                            return monthSort;
+                        }
+                        const categorySort = a.category.localeCompare(b.category);
+                        if (categorySort !== 0) {
+                            return categorySort;
+                        }
+                        return a.date.localeCompare(b.date);
+                    });
+            }
+
+            function groupReceiptItems(expenses) {
+                const groups = new Map();
+                expenses.forEach((expense) => {
+                    const key = `${monthFromDate(expense.date)}|${expense.category}`;
+                    if (!groups.has(key)) {
+                        groups.set(key, {
+                            key,
+                            label: `${formatMonth(monthFromDate(expense.date))} - ${expense.category}`,
+                            items: []
+                        });
+                    }
+                    groups.get(key).items.push(expense);
+                });
+                return Array.from(groups.values());
+            }
+
+            function labelForReceiptIndexFilter(value) {
+                return (receiptIndexFilters.find((option) => option.value === value) || receiptIndexFilters[0]).label;
+            }
+
+            function readReceiptDraftFromForm() {
+                return {
+                    type: els.entryType.value,
+                    date: validDate(els.entryDate.value),
+                    category: cleanText(els.category.value),
+                    vendor: cleanText(els.vendor.value),
+                    description: cleanText(els.description.value),
+                    amount: Number(els.amount.value) || 0,
+                    receiptRef: cleanText(els.receiptRef.value)
+                };
+            }
+
+            function canSuggestReceiptName(expense) {
+                return Boolean(
+                    validDate(expense.date) &&
+                    cleanText(expense.vendor) &&
+                    cleanText(expense.category) &&
+                    Number(expense.amount) > 0
+                );
             }
 
             function renderBackupStatus() {
@@ -1567,6 +1684,7 @@
                         <div class="table-actions">
                             <button class="button text" type="button" data-action="edit" data-id="${escapeHtml(expense.id)}">Edit</button>
                             <button class="button text" type="button" data-action="copy" data-id="${escapeHtml(expense.id)}">Copy</button>
+                            <button class="button text" type="button" data-action="copy-receipt-name" data-id="${escapeHtml(expense.id)}">Copy receipt name</button>
                             <button class="button text danger-text" type="button" data-action="delete" data-id="${escapeHtml(expense.id)}">Delete</button>
                         </div>
                     </td>
@@ -1604,7 +1722,10 @@
                             expense.businessPurpose,
                             expense.category,
                             expense.paymentMethod,
+                            labelForReceipt(expense.receiptStatus),
                             expense.receiptRef,
+                            suggestedReceiptFilename(expense),
+                            suggestedReceiptPath(expense),
                             expense.notes
                         ].join(" ").toLowerCase();
                         return haystack.includes(state.filters.search);
@@ -1623,16 +1744,88 @@
                 render();
             }
 
-            function showCloseoutMonthInLedger() {
-                ensureCloseoutMonth();
-                state.filters = {
-                    year: state.closeoutMonth.slice(0, 4),
-                    category: "all",
-                    deductibility: "all",
-                    search: state.closeoutMonth
-                };
-                render();
-                document.getElementById("ledgerTitle").scrollIntoView({ behavior: "smooth", block: "start" });
+            async function copySuggestedReceiptName() {
+                const draft = readReceiptDraftFromForm();
+                if (!canSuggestReceiptName(draft)) {
+                    return;
+                }
+                await copyText(suggestedReceiptFilename(draft), "Copied suggested receipt filename.");
+            }
+
+            function useSuggestedReceiptPathInForm() {
+                const draft = readReceiptDraftFromForm();
+                if (!canSuggestReceiptName(draft)) {
+                    return;
+                }
+                els.receiptRef.value = suggestedReceiptPath(draft);
+                els.receiptStatus.value = "named";
+                renderFormReceiptSuggestion();
+                showCopyNotice("Suggested receipt path added to the form. Save the entry when ready.");
+            }
+
+            async function copyReceiptName(expense) {
+                await copyText(suggestedReceiptFilename(expense), "Copied receipt filename.");
+            }
+
+            function useReceiptPath(expense) {
+                const nextStatus = ["stored", "linked", "statement", "not-needed"].includes(expense.receiptStatus)
+                    ? expense.receiptStatus
+                    : "named";
+                state.expenses = state.expenses.map((item) => {
+                    if (item.id !== expense.id) {
+                        return item;
+                    }
+                    return {
+                        ...item,
+                        receiptRef: suggestedReceiptPath(expense),
+                        receiptStatus: nextStatus,
+                        updatedAt: new Date().toISOString()
+                    };
+                });
+                persistAndRender();
+                showCopyNotice("Suggested receipt path saved to the ledger.");
+            }
+
+            async function copyText(text, successMessage) {
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(text);
+                    } else {
+                        fallbackCopyText(text);
+                    }
+                    showCopyNotice(successMessage);
+                } catch (error) {
+                    try {
+                        fallbackCopyText(text);
+                        showCopyNotice(successMessage);
+                    } catch (fallbackError) {
+                        showCopyNotice("Could not copy automatically. Select and copy the suggested filename manually.", "warning");
+                    }
+                }
+            }
+
+            function fallbackCopyText(text) {
+                const textarea = document.createElement("textarea");
+                textarea.value = text;
+                textarea.setAttribute("readonly", "");
+                textarea.style.position = "fixed";
+                textarea.style.left = "-9999px";
+                document.body.appendChild(textarea);
+                textarea.select();
+                const copied = document.execCommand("copy");
+                textarea.remove();
+                if (!copied) {
+                    throw new Error("Copy command failed.");
+                }
+            }
+
+            function showCopyNotice(message, tone = "") {
+                window.clearTimeout(copyNoticeTimer);
+                els.copyNoticeText.textContent = message;
+                els.copyNotice.className = `notice is-visible${tone === "warning" ? " warning" : ""}`;
+                copyNoticeTimer = window.setTimeout(() => {
+                    els.copyNotice.classList.remove("is-visible");
+                }, 3600);
             }
 
             function exportJsonBackup() {
@@ -1651,22 +1844,42 @@
                 state.settings.lastExportAt = exportedAt;
                 saveSettings();
                 renderBackupStatus();
-                renderCloseoutBackupReminder();
             }
 
-            function exportCurrentCsv() {
-                const rows = getFilteredExpenses().sort((a, b) => a.date.localeCompare(b.date));
-                exportExpensesCsv(rows, `futures-expenses-${todayISO()}.csv`);
-            }
-
-            function exportCloseoutCsv() {
-                ensureCloseoutMonth();
-                const rows = getCloseoutExpenses().sort((a, b) => a.date.localeCompare(b.date));
+            function exportSelectedCsv() {
+                const selection = getDownloadSelection();
+                const rows = selection.expenses.sort((a, b) => a.date.localeCompare(b.date));
                 if (!rows.length) {
-                    alert(`No entries to export for ${formatMonth(state.closeoutMonth)}.`);
+                    alert(`No entries to download for ${selection.label}.`);
                     return;
                 }
-                exportExpensesCsv(rows, `futures-expenses-${state.closeoutMonth}.csv`);
+                exportExpensesCsv(rows, selection.filename);
+            }
+
+            function getDownloadSelection() {
+                if (state.downloadScope === "month") {
+                    const month = /^\d{4}-\d{2}$/.test(String(state.downloadMonth)) ? state.downloadMonth : currentMonth();
+                    return {
+                        label: formatMonth(month),
+                        filename: `futures-expenses-${month}.csv`,
+                        expenses: state.expenses.filter((expense) => monthFromDate(expense.date) === month)
+                    };
+                }
+
+                if (state.downloadScope === "year") {
+                    const year = /^\d{4}$/.test(String(state.downloadYear)) ? state.downloadYear : taxYearFromDate(todayISO());
+                    return {
+                        label: `tax year ${year}`,
+                        filename: `futures-expenses-${year}.csv`,
+                        expenses: state.expenses.filter((expense) => expense.taxYear === year)
+                    };
+                }
+
+                return {
+                    label: "all entries",
+                    filename: `futures-expenses-all-${todayISO()}.csv`,
+                    expenses: [...state.expenses]
+                };
             }
 
             function exportExpensesCsv(rows, filename) {
@@ -1681,6 +1894,8 @@
                     "Payment Method",
                     "Proof Status",
                     "Receipt Reference",
+                    "Suggested Receipt Filename",
+                    "Suggested Receipt Path",
                     "Deductibility Status",
                     "Amount",
                     "Net Amount",
@@ -1697,6 +1912,8 @@
                     expense.paymentMethod,
                     labelForReceipt(expense.receiptStatus),
                     expense.receiptRef,
+                    suggestedReceiptFilename(expense),
+                    suggestedReceiptPath(expense),
                     labelForDeductibility(expense.deductibility),
                     Number(expense.amount).toFixed(2),
                     signedAmount(expense).toFixed(2),
@@ -1810,15 +2027,22 @@
                 return expense.type === "expense" ? amount : -amount;
             }
 
-            function getCloseoutExpenses() {
-                ensureCloseoutMonth();
-                return state.expenses.filter((expense) => monthFromDate(expense.date) === state.closeoutMonth);
+            function needsReceiptWork(expense) {
+                return ["missing", "named"].includes(expense.receiptStatus);
             }
 
-            function ensureCloseoutMonth() {
-                if (!/^\d{4}-\d{2}$/.test(String(state.closeoutMonth))) {
-                    state.closeoutMonth = currentMonth();
-                }
+            function suggestedReceiptFilename(expense) {
+                const date = validDate(expense.date);
+                const vendor = slugPart(expense.vendor || "vendor");
+                const category = slugPart(expense.category || "expense");
+                const amount = Math.abs(Number(expense.amount) || 0).toFixed(2);
+                return `${date}_${vendor}_${category}_${amount}.pdf`;
+            }
+
+            function suggestedReceiptPath(expense) {
+                const month = monthFromDate(expense.date);
+                const parts = month.split("-");
+                return `${parts[0]}/${parts[1]}/receipts/${suggestedReceiptFilename(expense)}`;
             }
 
             function latestExpenseMonth() {
@@ -1841,14 +2065,6 @@
                 const parts = month.split("-");
                 const date = new Date(Number(parts[0]), Number(parts[1]) - 1, 1);
                 return date.toLocaleString("en-US", { month: "long", year: "numeric" });
-            }
-
-            function latestUpdatedAt() {
-                const timestamps = state.expenses
-                    .map((expense) => new Date(expense.updatedAt || expense.createdAt || expense.date))
-                    .filter((date) => !Number.isNaN(date.getTime()))
-                    .sort((a, b) => b.getTime() - a.getTime());
-                return timestamps[0] || null;
             }
 
             function formatMoney(amount) {
@@ -1885,6 +2101,17 @@
 
             function cleanText(value) {
                 return String(value == null ? "" : value).replace(/\s+/g, " ").trim();
+            }
+
+            function slugPart(value) {
+                const slug = cleanText(value)
+                    .toLowerCase()
+                    .replace(/&/g, " and ")
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-+|-+$/g, "")
+                    .slice(0, 48)
+                    .replace(/-+$/g, "");
+                return slug || "item";
             }
 
             function inferPurpose(category) {
